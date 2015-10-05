@@ -14,3 +14,4 @@ www:
 
 redis:
   image: redis
+  mem_limit: 50000000
