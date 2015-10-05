@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>ECS CLI / Compose demo app</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        <style>body {margin-top: 40px; background-color: #333;}</style>
-        <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Training wheels</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <style>body {margin-top: 40px; background-color: #333;}</style>
+    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  </head>
 
-    <body>
-        <div class="container">
-            <div class="hero-unit">
-                <h1>Backend counter</h1>
-                <h2>This request was proudly served by {{ hostname }}.</h2>
-                <p>Other backends include:</p>
-                {% for backend, count in counters %}
-                <p>{{ backend }} (served {{ count }} request(s))</p>
-                {% endfor %}
-            </div>
-        </div>
+  <body>
+    <div class="container">
+      <div class="hero-unit">
+        <h1>Training wheels</h1>
+        <h2>This request was served by {{ hostname }}.</h2>
+        <h2>{{ hostname }} served {{ thiscount }} requests so far.</h2>
+        {% if totalcount>1 %}<h2>A grand total of {{ totalcount }} requests were served.</h2>
+        {% endif %}
+        <p>The current ladder is:
+          <ul>{% for backend, count in counters %}
+            <li{% if backend==hostname %} style="background: yellow;"{% endif %}>
+              {{ backend }} → {{ count }} request{% if count>1 %}s{% endif %}
+            </li>{% endfor %}
+          </ul>
+        </p>
+      </div>
+    </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-    </body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+  </body>
 
 </html>

@@ -20,7 +20,12 @@ if "DEBUG" in os.environ:
 def index():
     redis.zincrby("counters", hostname)
     counters = redis.zrevrange("counters", 0, -1, withscores=True)
-    return render_template("index.html", hostname=hostname, counters=counters)
+    counters = [ (s.decode(), int(i)) for (s,i) in counters ]
+    thiscount = int(redis.zscore("counters", hostname))
+    totalcount = sum(i for (s,i) in counters)
+    return render_template( "index.html",
+        hostname=hostname, counters=counters,
+        thiscount=thiscount, totalcount=totalcount)
 
 
 @app.route("/assets/<path:path>")

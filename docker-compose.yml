@@ -2,15 +2,15 @@ www:
   build: www
   ports:
     - 8000:5000
-  mem_limit: 200000000
-  volumes:
-    - ./www:/src
-  #environment:
-  #  DEBUG:
   links:
     - redis
-  command: gunicorn --bind 0.0.0.0:5000 --workers 10 counter:app
   user: nobody
+  mem_limit: 200000000
+  #environment:
+  #  DEBUG: 1
+  #command: python counter.py
+  #volumes:
+  #  - ./www:/src
 
 redis:
   image: redis
