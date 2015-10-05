@@ -17,7 +17,7 @@
       <div class="hero-unit">
         <h1>Training wheels</h1>
         <h2>This request was served by {{ hostname }}.</h2>
-        <h2>{{ hostname }} served {{ thiscount }} requests so far.</h2>
+        <h2>{{ hostname }} served {{ thiscount }} request{% if thiscount>1 %}s{% endif %} so far.</h2>
         {% if totalcount>1 %}<h2>A grand total of {{ totalcount }} requests were served.</h2>
         {% endif %}
         <p>The current ladder is:
