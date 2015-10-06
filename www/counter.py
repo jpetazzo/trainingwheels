@@ -16,6 +16,12 @@ if "DEBUG" in os.environ:
     app.debug = True
 
 
+@app.errorhandler(500)
+def error(e):
+    return render_template('error.html',
+        hostname=hostname, error=e), 500
+
+
 @app.route("/")
 def index():
     redis.zincrby("counters", hostname)
