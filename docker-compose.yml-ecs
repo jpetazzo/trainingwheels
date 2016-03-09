@@ -1,0 +1,17 @@
+www:
+  build: www
+  ports:
+    - 8000:5000
+  links:
+    - redis
+  user: nobody
+  mem_limit: 200000000
+  #environment:
+  #  DEBUG: 1
+  #command: python counter.py
+  #volumes:
+  #  - ./www:/src
+
+redis:
+  image: redis
+  mem_limit: 50000000
