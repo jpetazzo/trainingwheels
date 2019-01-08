@@ -24,7 +24,7 @@ def error(e):
 
 @app.route("/")
 def index():
-    redis.zincrby("counters", hostname)
+    redis.zincrby("counters", 1, hostname)
     counters = redis.zrevrange("counters", 0, -1, withscores=True)
     counters = [ (s.decode(), int(i)) for (s,i) in counters ]
     thiscount = int(redis.zscore("counters", hostname))
