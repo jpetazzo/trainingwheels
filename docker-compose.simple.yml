@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  www:
+    build: www
+    ports:
+      - 5000
+
+  redis:
+    image: redis
