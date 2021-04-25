@@ -1,10 +1,10 @@
-version: "2"
+version: "3"
 
 services:
   www:
     build: www
     ports:
-      - 8000:5000
+      - ${PORT-8000}:5000
     user: nobody
     environment:
       DEBUG: 1
